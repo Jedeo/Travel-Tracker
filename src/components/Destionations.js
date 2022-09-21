@@ -3,6 +3,8 @@ class Destinations {
     this.destinations = destinations;
   }
 
+
+  //calculates how much a trip will cost with the agent fee
   getEstimatedCost(trips) {
     let locationId;
     let numOfTravelers;
@@ -27,11 +29,10 @@ class Destinations {
     return estimatedCost;
   }
 
+//calculates how much a traveler has spent in a year with the agent fee
   getYearlySpending(trips, year) {
     let filteredTrips= trips.filter(trip => trip.date.includes(year))
-   // console.log(filteredTrips)
-
-
+   
     let yearSpending = filteredTrips.reduce((totalSpending, trip) => {
         this.destinations.filter(destination => {
             if(destination.id === trip.destinationID){
@@ -41,9 +42,33 @@ class Destinations {
        
         return totalSpending;
     },0)
-    console.log(yearSpending);
+    
     return Math.round(yearSpending);
   }
+//returns a list of passable location a traveler can go
+  getLocations(){
+    const listOfLocations = this.destinations.reduce((list, destination)=> {
+  
+      list.push(destination.destination)
+      return list;
+
+    },[])
+   
+    return listOfLocations;
+  }
+//return searched destination
+  getSearchedLocation(searchedWord){
+  
+    const location = this.destinations.find(destination => destination.destination === searchedWord);
+    
+      if(location === undefined){
+
+        return 'Location not available please select a different location'
+      }
+
+    return location;
+  }
+
 
 }
 
