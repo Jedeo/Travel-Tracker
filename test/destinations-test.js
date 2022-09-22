@@ -24,4 +24,20 @@ describe('Destinations', function() {
     expect(destination.getYearlySpending(trip.getUserTrip(7), 2020)).to.equal(37290)
     
   });
+
+  it('should return an array names of places to travel', ()=> {
+    const result = destination.getLocations()
+
+    expect(result.length).to.equal(50)
+  })
+
+  it('should be able to search by name of location', ()=> {
+
+    expect(destination.getSearchedLocation('Lima, Peru')).to.equal(decorationsTestData[0])
+  })
+
+  it('it should show a message "Location not available please select a different location"', () => {
+
+    expect(destination.getSearchedLocation('Burundi')).to.equal('Location not available please select a different location')
+  })
 });
