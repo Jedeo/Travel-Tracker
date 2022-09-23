@@ -20,4 +20,12 @@ describe("Traveler", function () {
   it("should have a travelerType", function () {
     expect(traveler1.travelerType).to.equal('relaxer')
   });
+
+  it.skip('should return traveler first name', ()=> {
+
+  })
+
+  it.skip("should return traveler full name", ()=> {
+
+  })
 });
