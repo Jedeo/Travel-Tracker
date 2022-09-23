@@ -1,15 +1,28 @@
+import { fetchPromise } from "../scripts";
 
-function getRequest(type) {
- return fetch(`http://localhost:3001/api/v1/${type}`)
- .then((response)=> response.json())
- //.then((data)=> console.log(data))
- .catch((err)=> console.log(err))   
+const requestsUrl = `http://localhost:3001/api/v1/`;
+const getRequest = async (type) => {
+  const response = await fetch(`${requestsUrl}${type}`);
+  const data = await response.json().catch((err) => console.log(err));
+  console.log(data);
+  return data;
+};
+
+
+
+export async function postRequest(type, travelerRequest) {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(travelerRequest),
+  };
+  const response = await fetch(`${requestsUrl}${type}`, options);
+  const data = await response.json()
+    
+  return data;
 }
 
 
-
-
-
-export {getRequest}
-
-
+export { getRequest };
