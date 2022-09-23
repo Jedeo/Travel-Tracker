@@ -1,0 +1,32 @@
+.login-main,
+.login-form{
+    display: flex;
+    justify-content: center;
+}
+
+.login-main{
+    margin-top: 40vh;
+}
+
+
+.login-form{
+    flex-direction: column;
+}
+.login-form label {
+    margin-top: 1vw;
+}
+
+#passWord,
+#userName{
+    margin-top: 1vh;
+    width: 20rem;
+    height: 2rem;
+}
+
+.login-button{
+    position: relative;
+    margin-top: 1rem;
+    width: 8rem;
+    height: 2rem;
+    left: 12.5rem;
+}
