@@ -75,7 +75,7 @@ main{
   padding: 0;
 }
 
-.past-trips figure {
+.past-trips figure{
   margin-right: .5rem;
 }
 
@@ -105,8 +105,8 @@ h2{
 .scroll {   
   display: inline-block;
   margin: 0;
-  margin-right: 1.5vw;
-  margin-top: 1.5vh;
+  margin-right: 0;
+  margin-top: 0;
   scroll-behavior: smooth;
     
 }
@@ -122,7 +122,7 @@ h2{
 }
 .current-trips,
 .past-trips,
-.upcoming-trip{
+.upcoming-trips{
   width: 28vw;
   height: auto;
   overflow-x: scroll;
@@ -135,8 +135,8 @@ h2{
 }
 
 .upcoming-trips figure {
-  margin-right: 2rem;
-  margin-right: 10rem;
+  margin-right:.5rem;
+ 
 }
 
 .hidden{
