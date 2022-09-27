@@ -22,10 +22,10 @@ import { locale } from "dayjs";
 
 //querySelectors
 let locationInput = document.getElementById("location");
-//console.log(locationInput.value,'+++++++++');
+
 const loginButton = document.querySelector(".login-button");
 const formSection = document.querySelector(".form-back");
-//const loginSection = document.querySelector(".login-page");
+
 const welcomeTraveler = document.querySelector(".welcome-traveler");
 const availableDestinations = document.querySelector(".destination");
 let username = document.getElementById("userName");
@@ -35,13 +35,12 @@ const cancelButton = document.querySelector(".cancel-icon");
 const totalAmount = document.querySelector(".total-for-trip");
 const numOfTravelers = document.getElementById("numOfTravelers");
 const logout = document.querySelector(".logout-logo")
-//global variable
-//let travelerLocationName;
+
+
 let nightStay;
 let flight;
 let travelerBookedTrip;
 let travelerDate;
-let traverEndDate;
 let destination;
 let travelerTrips;
 let traveler;
@@ -58,12 +57,10 @@ if (availableDestinations !== null)
   availableDestinations.addEventListener("click", getLocations);
 
 if (submitButton !== null) {
-  submitButton.addEventListener("click", () => {
-    //event.preventDefault()
+  submitButton.addEventListener("click", (event) => {
     const userInput = document.getElementById("checkIn");
     const endDate = document.querySelector(".checkOut");
     travelerDate = userInput.value;
-    traverEndDate = endDate.value;
     travelerRequest();
   });
 }

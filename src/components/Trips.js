@@ -26,21 +26,19 @@ class Trips {
     return estimatedCost;
   }
 
-  getTripDuration(startDate, endDate){
-    let tripStartDate =  new Date(startDate)
-    const endOfTrip =  new Date(endDate)
+  getTripDuration(startDate, endDate) {
+    let tripStartDate = new Date(startDate);
+    const endOfTrip = new Date(endDate);
 
     const numberOfTime = tripStartDate.getTime() - endOfTrip.getTime();
 
-    const numberOfDays = Math.round(numberOfTime/(1000 * 3600 * 24));
-    
-    return numberOfDays
-    
+    const numberOfDays = Math.round(numberOfTime / (1000 * 3600 * 24));
+
+    return numberOfDays;
   }
 
   //calculates how much a traveler has spent in a year with the agent fee
-  getYearlySpending(trips, year,destinationsTestData) {
-    console.log(trips);
+  getYearlySpending(trips, year, destinationsTestData) {
     let filteredTrips = trips.filter((trip) => trip.date.includes(year));
 
     let yearSpending = filteredTrips.reduce((totalSpending, trip) => {
