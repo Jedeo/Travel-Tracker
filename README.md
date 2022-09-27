@@ -40,10 +40,13 @@ Clicking a destination on the dashboard will allow the user to request a new tri
 7. Enjoy! 
 
 ##Future Additions
--- The next step may be to add a search bar that allows users to browse all available destinations and search for a specific destination.
-- Add a secondary login for travel agents to review pending trips. 
-- As an agent, be able to add new destination spots too.
-- Making the web application more accessible than it already is, by implementing audit suggestions from web accessibility evaluation tools.
+- The next step may be to add a search bar that allows users to browse all available destinations and search for a specific destination.
+- Travel agents can review pending trips with a secondary login. 
+- The ability to add new destinations as an agent.
+- Implementing audit suggestions from web accessibility evaluation tools to make the web application more accessible than it already is.
+
+
+
 
 ## Technologies
 This project used JavaScript, HTML, and CSS primarily. Test driven development using Mocha and Chai was also used. Additional technologies learned specifically for this project included Webpack, Chart.js, testing accessibility using LightHouse, and making network requests to fetch information from an API. 
