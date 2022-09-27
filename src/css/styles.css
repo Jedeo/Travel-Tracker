@@ -1,22 +1,72 @@
 /* body {
   background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 } */
+body{
+  display: flex;
+  flex-direction: column;
+}
 
 main{
   display: flex;
   margin: 20px;
 }
+.header-section{
+  display: flex;
+}
 
+.web-logo{
+  width: 8rem;
+}
+.search-button,
+.filter-button,
+.search-place input 
+{
+  border-radius: 10px;
+ 
+}
+
+.search-button,
+.filter-button{
+  background-color: aqua
+}
 /* Middle section */
 
 .middle-section{
-  width: 65vw;
+  width: 70vw;
 }
 
+.searchbar-section{
+  display: flex;
+}
+.search-place input{
+  
+  width: 30vw;
+  height: 2rem;
+  
+}
+
+.search-place{
+  margin-bottom: 5vh;
+}
+
+.filter-logo{
+  
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.filter-button {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.search-button{
+  width: 5rem;
+}
 .middle-section p {
   margin: 0;
   font-size: 1vw;
-  color: gray;
+  color:black;
 }
 
 .welcome {
@@ -26,23 +76,30 @@ main{
 }
 
 .past-trips figure {
-  margin: 2rem;
   margin-right: .5rem;
 }
 
+.destination{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 70vw;
+}
 
+.destination figure .destination-img{
+  width:19rem;
+  height:12rem;
+}
+
+.destination-img{
+  width: 15rem;
+  height: 10rem;
+  border-radius: 12px;
+}
 /* middle and right sections */
 h2{
   width: 16vw;
-  font-size: 2vw;
-}
-.past-trips,.upcoming-trips{
-  /* //border: 1px solid rgb(162, 184, 204); */
-  border-radius: 12px;
-  width: 29vw;
-  height: 16rem;
-  overflow-x: scroll;
-  white-space: nowrap;
+  font-size:medium;
 }
 
 .scroll {   
@@ -50,25 +107,31 @@ h2{
   margin: 0;
   margin-right: 1.5vw;
   margin-top: 1.5vh;
+  scroll-behavior: smooth;
     
+}
+.scroll img:hover {
+  color: aqua;
 }
 
 /* right section upcoming events*/
 .right-section{
-  width: 35vw;
+  /* position: fixed; */
+  /* right: 0; */
+  width: 30vw;
 }
-
-
-.destination-img{
-  width: 15rem;
-  height: 10rem;
-  border-radius: 12px;
+.current-trips,
+.past-trips,
+.upcoming-trip{
+  width: 28vw;
+  height: auto;
+  overflow-x: scroll;
+  white-space: nowrap;
 }
-
 .figure-info {
   margin:0;
   font-size: 1vw;
-  color: gray;
+  color: black;
 }
 
 .upcoming-trips figure {
@@ -78,4 +141,95 @@ h2{
 
 .hidden{
   display: none;
+}
+/* form-section */
+
+.form-section {
+  border-radius: 10px;
+  position:absolute;
+  left: 30vw;
+  top: 28vh;
+  background-color: aliceblue;
+  width: 30rem;
+  padding: 2rem;
+}
+.form-section h2 {
+  width: 30rem;
+  font-size: xx-large;
+}
+.form-container{
+  position: relative;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+
+#location,#numOfTravelers {
+  border-radius: 12px;
+  width: 14rem;
+  height: 2rem;
+  margin-bottom: 1rem;
+}
+
+#numOfTravelers,
+.numOfTravelers-label{
+  position: relative;
+  left: 16rem;
+  bottom: 4.5rem;
+
+}
+
+#checkIn,
+#checkOut{
+  border-radius: 12px;
+  width: 14rem;
+  height: 2rem;
+}
+
+.in-out{
+  display:flex;
+  flex-direction: column;
+  position: relative;
+  bottom: 4rem;
+}
+
+#checkOut,
+.checkout-label{
+  position: relative;
+  left: 16rem;
+  bottom: 3.5rem;
+}
+
+.form-submit-button{
+  position: relative;
+  font-size: medium;
+  height: 2rem;
+  border-radius: 12px;
+  background-color: aqua;
+  bottom: 4rem;
+}
+
+.cancel-icon{
+  position: relative;
+  left: 28rem;
+  bottom: 1rem;
+}
+
+.total-for-trip{
+  position: relative;
+  bottom: 100px;
+  left: 18rem;
+}
+
+.form-back {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+.logout-logo {
+  position: absolute;
+  right: 0;
+  margin-right: .5rem;
 }

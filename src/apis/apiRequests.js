@@ -3,8 +3,9 @@ import { fetchPromise } from "../scripts";
 const requestsUrl = `http://localhost:3001/api/v1/`;
 const getRequest = async (type) => {
   const response = await fetch(`${requestsUrl}${type}`);
-  const data = await response.json().catch((err) => console.log(err));
-  console.log(data);
+  const data = await response.json()
+  .catch((err) => console.log("pageDown"));
+  //console.log(data);
   return data;
 };
 

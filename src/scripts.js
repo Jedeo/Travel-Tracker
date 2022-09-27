@@ -1,48 +1,98 @@
 //import class
 import Trips from "../src/components/Trips";
 import Traveler from "../src/components/Traveler";
-import Destinations from "../src/components/Destionations";
-
+import Destinations from "./components/Destinations";
+const dayjs = require("dayjs");
 //api import
 import { getRequest } from "../src/apis/apiRequests";
 import { postRequest } from "../src/apis/apiRequests";
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import "./images/turing-logo.png";
+import "./images/tune.png";
+import "./images/search.png";
+import "./images/logout.png";
+import "./images/flying.png";
+import "./images/cancel.png";
+
 //CSS (SCSS) file import
 import "./css/styles.css";
 import "./css/login.css";
+import { locale } from "dayjs";
 
 //querySelectors
+let locationInput = document.getElementById("location");
+//console.log(locationInput.value,'+++++++++');
 const loginButton = document.querySelector(".login-button");
+const formSection = document.querySelector(".form-back");
 //const loginSection = document.querySelector(".login-page");
 const welcomeTraveler = document.querySelector(".welcome-traveler");
 const availableDestinations = document.querySelector(".destination");
-const username = document.getElementById('userName').value
-const password = document.getElementById('passWord')
-
-
+let username = document.getElementById("userName");
+let password = document.getElementById("passWord");
+const submitButton = document.querySelector(".form-submit-button");
+const cancelButton = document.querySelector(".cancel-icon");
+const totalAmount = document.querySelector(".total-for-trip");
+const numOfTravelers = document.getElementById("numOfTravelers");
+const logout = document.querySelector(".logout-logo")
 //global variable
+//let travelerLocationName;
+let nightStay;
+let flight;
+let travelerBookedTrip;
+let travelerDate;
+let traverEndDate;
 let destination;
 let travelerTrips;
 let traveler;
-
+let currentTraveler = parseInt(localStorage.getItem("username"));
+let travelerRequestedDestination;
 
 //EventListener
-window.addEventListener("load", () => {
+
+if (loginButton !== null) {
+  loginButton.addEventListener("click", checkTravelerLogin);
+}
+
+if (availableDestinations !== null)
+  availableDestinations.addEventListener("click", getLocations);
+
+if (submitButton !== null) {
+  submitButton.addEventListener("click", () => {
+    //event.preventDefault()
+    const userInput = document.getElementById("checkIn");
+    const endDate = document.querySelector(".checkOut");
+    travelerDate = userInput.value;
+    traverEndDate = endDate.value;
+    travelerRequest();
+  });
+}
+
+window.addEventListener("DOMContentLoaded", () => {
   fetchPromise();
 });
 
-loginButton.addEventListener('click', () => {
-    console.log(username);
-    // if(){
-    //     window.location.replace('dashboard.html')
+if (cancelButton !== null) {
+  cancelButton.addEventListener("click", () => {
+    formSection.classList.add("hidden");
+  });
+}
 
-    // }
-   
-})
+if(logout !== null){
+    logout.addEventListener('click',()=> {
+        window.location.replace("index.html")
+    } )
+}
 
-availableDestinations.addEventListener("click", getLocations);
+
+function checkTravelerLogin() {
+  const travelersLogin = traveler.getUserLogin();
+  localStorage.setItem("username", traveler.getCurrentTraveler(username.value));
+
+  if (travelersLogin[username.value] && password.value === "travel") {
+    window.location.replace("dashboard.html");
+  }
+}
 
 //fetch requests
 export function fetchPromise() {
@@ -53,77 +103,86 @@ export function fetchPromise() {
   ]).then((data) => {
     assign(data);
     displayTrips();
+    disPlayTripAmount();
   });
 
   return requests;
 }
 
-function travelerRequest(){
+//
+function travelerRequest() {
   let type = "trips";
   let request = {
     id: Date.now(),
-    userID: 1,
-    destinationID: 4,
-    travelers: 2,
-    date: "2022/11/23",
-    duration: 2,
+    userID: currentTraveler,
+    destinationID: travelerRequestedDestination,
+    travelers: parseInt(numOfTravelers.value),
+    date: dayjs(travelerDate.toString()).format("YYYY/MM/DD").toString(),
+    duration: getTripDuration(),
     status: "pending",
     suggestedActivities: [],
   };
-  postRequest(type, request).then(response => {
-   // console.log(response);
-    assign(response)
-  })
+  postRequest(type, request).then((response) => {
+    console.log("=============", response);
+    assign(response);
+  });
 }
 
 function displayTrips() {
+  const filter = document.querySelector(".filter-logo");
+  if (filter !== null) {
+    filter.src = "./images/tune.png";
+    logout.src = "./images/logout.png";
+  }
+
+  // document.querySelector(".web-logo").src = "./images/flying.png";
   getUpcomingTrips();
   getPastTrips();
   displayTravelerWelcomeMessage();
   displayFullName();
-  
+  getCurrentTrips();
 }
 
-//passing aregments to classes from the data that is fetched
+//passing arguments to classes from the data that is fetched
 function assign(data) {
-  traveler = new Traveler(data[0].travelers[0]);
+  traveler = new Traveler(data[0].travelers);
   travelerTrips = new Trips(data[1].trips);
-  console.log(travelerTrips.getUserTrip(1));
   destination = new Destinations(data[2].destinations);
   getAllDestinations(data[2].destinations);
 }
 
 //displaying a welcoming message with user first name
 function displayTravelerWelcomeMessage() {
-  console.log('thus is traveler',traveler);
-  let splitName = traveler.name.split(" ");
-  console.log(splitName);
   welcomeTraveler.innerHTML = `
-    <header> <h1 class="welcome"> Hello ${splitName[0]}! </h1> </header>
+    <header> <h1 class="welcome"> Hello ${traveler.getFirstName(
+      currentTraveler
+    )}! </h1> </header>
     <p> Where will you go next? </p>`;
 }
 
 //displaying user full name.
 function displayFullName() {
   const fullName = document.querySelector(".full-name");
-  fullName.innerHTML = `${traveler.name}`;
+  fullName.innerHTML = `${traveler.getFullName(currentTraveler)}`;
 }
 
 //displaying trips that are past the current date
 function getUpcomingTrips() {
   const travelerFutureTrips = destination.getUpcomingDTrips(
-    travelerTrips.getUserTrip(1)
+    travelerTrips.getUserTrip(currentTraveler)
   );
-  console.log(travelerFutureTrips);
-  //const tripSpending;
+
   const upComingTrips = document.querySelector(".upcoming-trips");
 
-  upComingTrips.innerHTML = "";
-  if (typeof travelerFutureTrips !== "string") {
+  if (
+    typeof travelerFutureTrips !== "string" &&
+    upComingTrips.innerHTML !== null
+  ) {
+    upComingTrips.innerHTML = "";
     travelerFutureTrips.forEach((destination) => {
       upComingTrips.innerHTML += `
          <figure class="scroll">
-            <img class="destination-img" src="${destination.image}" alt="${destination.alt}"></img>
+            <img class="destination-img" src="${destination.image}" alt="${destination.alt}">
             <div>
             <figcaption> ${destination.destination} </figcaption>
             <p class="figure-info">  $${destination.estimatedLodgingCostPerDay} night</p>
@@ -139,7 +198,7 @@ function getUpcomingTrips() {
 //displaying trips that are before the current date
 function getPastTrips() {
   const travelerPastTrips = destination.getTravelerPastTrips(
-    travelerTrips.getUserTrip(1)
+    travelerTrips.getUserTrip(currentTraveler)
   );
   const upComingTrips = document.querySelector(".past-trips");
   upComingTrips.innerHTML = "";
@@ -148,7 +207,7 @@ function getPastTrips() {
     travelerPastTrips.forEach((destination) => {
       upComingTrips.innerHTML += `
            <figure class="scroll">
-              <img class="destination-img" src="${destination.image}" alt="${destination.alt}"></img>
+              <img class="destination-img" src="${destination.image}" alt="${destination.alt}">
               <div class="info">
               <figcaption> ${destination.destination} </figcaption>
               <p class="figure-info">  $${destination.estimatedLodgingCostPerDay} night</p>
@@ -163,13 +222,34 @@ function getPastTrips() {
 
 function getAllDestinations(destinations) {
   const availableDestinations = document.querySelector(".destination");
-  availableDestinations.innerHTML = "";
-
-  if (typeof AllDestinations !== "string") {
+  if (availableDestinations !== null) {
+    availableDestinations.innerHTML = "";
     destinations.forEach((destination) => {
       availableDestinations.innerHTML += `
+                 <figure class="scroll">
+                    <img class="destination-img" src="${destination.image}" alt="${destination.alt}">
+                    <div class="info">
+                    <figcaption class="destination-name"> ${destination.destination} </figcaption>
+                    <p class="figure-info">  $${destination.estimatedLodgingCostPerDay} night</p>
+                    <p class="figure-info"> $${destination.estimatedFlightCostPerPerson} flights / PerPerson  </p>
+                    </div>
+                </figure>`;
+    });
+  }
+}
+
+function getCurrentTrips() {
+  const travelerCurrentTrip = destination.getCurrentDestinations(
+    travelerTrips.getUserTrip(currentTraveler)
+  );
+  const currentTrips = document.querySelector(".current-trips");
+  currentTrips.innerHTML = "";
+
+  if (typeof travelerCurrentTrip !== "string") {
+    travelerCurrentTrip.forEach((destination) => {
+      currentTrips.innerHTML += `
                <figure class="scroll">
-                  <img class="destination-img" src="${destination.image}" alt="${destination.alt}"></img>
+                  <img class="destination-img" src="${destination.image}" alt="${destination.alt}">
                   <div class="info">
                   <figcaption class="destination-name"> ${destination.destination} </figcaption>
                   <p class="figure-info">  $${destination.estimatedLodgingCostPerDay} night</p>
@@ -177,11 +257,58 @@ function getAllDestinations(destinations) {
                   </div>
               </figure>`;
     });
+  } else {
+    currentTrips.innerHTML = `${travelerCurrentTrip}`;
   }
 }
 
+//event delegation for selecting a destination.
 function getLocations(event) {
-  if (event.target.className === ".scroll") {
-    console.log(event.target.closest(".scroll"));
+  const selectedDestination = event.target.closest(".scroll");
+
+  if (!selectedDestination) {
+    return;
   }
+  formSection.classList.remove("hidden");
+  document.querySelector(".cancel-icon").src = "./images/cancel.png";
+  locationInput.value = selectedDestination.innerText.split("\n")[0];
+
+  travelerBookedTrip = selectedDestination.innerText.split("\n");
+  nightStay = travelerBookedTrip[2].split(" ")[0].split("$")[1];
+  flight = travelerBookedTrip[4].split(" ")[0].split("$")[1];
+
+  travelerRequestedDestination = destination.getSearchedLocation(
+    selectedDestination.innerText.split("\n")[0]
+  );
+}
+
+//displaying how much a requested trip will cost.
+function disPlayTripAmount() {
+  let numberOfTravelersForTrip = parseInt(numOfTravelers.value);
+  if (numberOfTravelersForTrip <= 0) {
+    totalAmount.innerHTML = `Total: $${0}`;
+  } else {
+    numOfTravelers.addEventListener("keyup", () => {
+      let numberOfTravelersForTrip = numOfTravelers.value;
+
+
+      let tripDuration = getTripDuration();
+      
+        const total = ((nightStay * tripDuration) + (flight * numberOfTravelersForTrip)) * 1.1
+      totalAmount.innerHTML = `Total: $${total}`;
+    });
+  }
+}
+
+function getTripDuration() {
+  const checkIn = document.getElementById("checkIn");
+  const checkOut = document.getElementById("checkOut");
+  const checkInDate = dayjs(checkIn.value.toString())
+    .format("YYYY/MM/DD")
+    .toString();
+  const checkOutDat = dayjs(checkOut.value.toString())
+    .format("YYYY/MM/DD")
+    .toString();
+
+  return travelerTrips.getTripDuration(checkOutDat, checkInDate);
 }

@@ -6,26 +6,22 @@ import Traveler from "../src/components/Traveler";
 describe("Traveler", function () {
   let traveler1;
   beforeEach(() => {
-    traveler1 = new Traveler(travelersTestData[9]);
+    traveler1 = new Traveler(travelersTestData);
   });
 
-  it("should have an id", function () {
-    expect(traveler1.id).to.equal(10);
-  });
 
-  it("should have a name", function () {
-    expect(traveler1.name).to.equal("Rickie Jodlowski");
+  it("should return a name", function () {
+
+    expect(traveler1.getFirstName(1)).to.equal("Ham");
   });
    
   it("should have a travelerType", function () {
-    expect(traveler1.travelerType).to.equal('relaxer')
+    expect(traveler1.getTravelerType(1)).to.equal('relaxer')
   });
 
-  it.skip('should return traveler first name', ()=> {
-
+  it('should return traveler full name', ()=> {
+    traveler1.getUserLogin()
+    expect(traveler1.getFullName(1)).to.equal("Ham Leadbeater");
   })
 
-  it.skip("should return traveler full name", ()=> {
-
-  })
 });

@@ -3,7 +3,7 @@ const expect = chai.expect;
 const destinationsTestData = require('../src/data/destinationsTestData')
 const tripsTestData = require('../src/data/tripsTestData')
 import Trips from '../src/components/Trips';
-import Destinations from "../src/components/Destionations"
+import Destinations from "../src/components/Destinations"
 
 describe('Destinations', function() {
   let destination;
@@ -14,17 +14,6 @@ describe('Destinations', function() {
     destination = new Destinations(destinationsTestData)
   })
 
-  it('should show an estimated cost (with a 10% travel agent fee) for the trip', function() {
-    
-    expect(destination.getEstimatedCost(trip.getUserTrip(1))).to.equal(4125)
-  });
-
-  it('should show total amount spent this year', function() {
-
-    expect(destination.getYearlySpending(trip.getUserTrip(7), 2020)).to.equal(37290)
-    
-  });
-
   it('should return an array names of places to travel', ()=> {
     const result = destination.getLocations()
 
@@ -33,7 +22,7 @@ describe('Destinations', function() {
 
   it('should be able to search by name of location', ()=> {
 
-    expect(destination.getSearchedLocation('Lima, Peru')).to.equal(destinationsTestData[0])
+    expect(destination.getSearchedLocation('Lima, Peru')).to.equal(destinationsTestData[0].id)
   })
 
   it('it should show a message "Location not available please select a different location"', () => {
@@ -47,10 +36,9 @@ describe('Destinations', function() {
     expect(result.length).to.equal(1)
   })
 
-  it('should return a meessage if traveler has no past destination', ()=> {
+  it('should return a message if traveler has no past destination', ()=> {
     
     const result = destination.getTravelerPastTrips(trip.getUserTrip(2))
-    console.log(result);
     expect(result).to.equal("You have not visited anywhere")
   })
 
@@ -61,6 +49,11 @@ describe('Destinations', function() {
 
   it('should return traveler upcoming trips destination', ()=> {
     let result = destination.getUpcomingDTrips(trip.getUserTrip(35))
+    expect(result[0]).to.equal(destinationsTestData[24])
+  })
+
+  it('should return traveler current destination', () => {
+    let result = destination.getUpcomingDTrips(trip.getUserTrip(18))
     expect(result[0]).to.equal(destinationsTestData[24])
   })
 });
