@@ -30,7 +30,7 @@ Travel Tracker is an interactive website that tracks a travelers destination. Go
 
 A user can also select a choice using a drop down to post new activity, hydration, and sleep data using input fields and a calendar date picker. The dashboard will show a zero value for any days with missing data. The user is given information about what types of inputs are expected in each field using placeholder text. Posted data will then display on the dashboard without page refresh. The gif below is showing an example of posting new activity information for a given day.
 
-![Activity_Post](https://user-images.githubusercontent.com/18154724/191154867-4d939787-5901-42bb-a08a-602a6a351ff5.gif)
+![Activity_Post]()
 
 ## Setup
 1. Fork this repo - on the top right corner of this page, click the **Fork** button. 
