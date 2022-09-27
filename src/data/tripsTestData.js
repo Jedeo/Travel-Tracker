@@ -19,6 +19,7 @@ tripsTestData = [
     status: "approved",
     suggestedActivities: [],
   },
+  
   {
     id: 3,
     userID: 3,
@@ -99,6 +100,16 @@ tripsTestData = [
     status: "approved",
     suggestedActivities: [],
   },
+  {
+    id: 18,
+    userID: 18,
+    destinationID: 2,
+    travelers: 2,
+    date: "2022/09/25",
+    duration: 17,
+    status: "approved",
+    suggestedActivities: [ ]
+    },
   {
     id: 117,
     userID: 1,
