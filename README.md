@@ -26,11 +26,9 @@ Travel Tracker is an interactive website that tracks a travelers destination. Go
 - Ensure our app follows best practices for accessibility.
 - Utilize proper error handling for our users to ensure they get data and submit POST requests. 
 
-![Main_Page_Travel_Tracker]()
+![Main_Page_Travel_Tracker](https://user-images.githubusercontent.com/16736352/192635904-525f18de-adb9-4f7e-8070-bfdff6a7e028.mov)
 
 A user can also select a choice using a drop down to post new activity, hydration, and sleep data using input fields and a calendar date picker. The dashboard will show a zero value for any days with missing data. The user is given information about what types of inputs are expected in each field using placeholder text. Posted data will then display on the dashboard without page refresh. The gif below is showing an example of posting new activity information for a given day.
-
-![Activity_Post]()
 
 ## Setup
 1. Fork this repo - on the top right corner of this page, click the **Fork** button. 
