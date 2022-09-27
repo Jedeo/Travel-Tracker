@@ -28,8 +28,7 @@ Travel Tracker is an interactive website that tracks a travelers destination. Go
 
 [![Main_Page_Travel_Tracker](https://user-images.githubusercontent.com/16736352/192635904-525f18de-adb9-4f7e-8070-bfdff6a7e028.mov)](https://user-images.githubusercontent.com/16736352/192640942-9e5047d7-ce3b-48ae-8ed3-bac01e37bb9b.mov)
 
-Clicking a destination on the dashboard will allow the user to request a new trip. Depending on the date they selected, the trip will appear in either their upcoming, past, or current trips section.
-
+Clicking a destination on the dashboard will allow the user to request a new trip by filling out a pop up form. Depending on the dates they plan to trip a travel agent will review lodging and flights availabilities.  
 
 ## Setup
 1. Fork this repo - on the top right corner of this page, click the **Fork** button. 
@@ -39,6 +38,12 @@ Clicking a destination on the dashboard will allow the user to request a new tri
 5. Clone the [Travel tracker](https://github.com/turingschool-examples/travel-tracker-api) to a separate folder, CD into it and run `npm install`. 
 6. The local server is now running on `https://localhost:3001/api/v1/activity` for example. Make sure to use `Control + C` to close the local server before closing the terminal when finished.
 7. Enjoy! 
+
+##Future Additions
+-- The next step may be to add a search bar that allows users to browse all available destinations and search for a specific destination.
+- Add a secondary login for travel agents to review pending trips. 
+- As an agent, be able to add new destination spots too.
+- Making the web application more accessible than it already is, by implementing audit suggestions from web accessibility evaluation tools.
 
 ## Technologies
 This project used JavaScript, HTML, and CSS primarily. Test driven development using Mocha and Chai was also used. Additional technologies learned specifically for this project included Webpack, Chart.js, testing accessibility using LightHouse, and making network requests to fetch information from an API. 
