@@ -57,9 +57,11 @@ if (availableDestinations !== null)
 
 if (submitButton !== null) {
   submitButton.addEventListener("click", (event) => {
+    event.preventDefault()
     const userInput = document.getElementById("checkIn");
     travelerDate = userInput.value;
     travelerRequest();
+    formSection.classList.add("hidden");
   });
 }
 
@@ -119,9 +121,9 @@ function travelerRequest() {
     suggestedActivities: [],
   };
   postRequest(type, request).then((response) => {
-    console.log("=============", response);
     assign(response);
   });
+  fetchPromise();
 }
 
 function displayTrips() {
@@ -169,12 +171,8 @@ function getUpcomingTrips() {
   );
 
   const upComingTrips = document.querySelector(".upcoming-trips");
-
-  if (
-    typeof travelerFutureTrips !== "string" &&
-    upComingTrips.innerHTML !== null
-  ) {
-    upComingTrips.innerHTML = "";
+  upComingTrips.innerHTML = "";
+  if (typeof travelerFutureTrips !== "string") {
     travelerFutureTrips.forEach((destination) => {
       upComingTrips.innerHTML += `
          <figure class="scroll">
@@ -197,7 +195,7 @@ function getPastTrips() {
     travelerTrips.getUserTrip(currentTraveler)
   );
   const upComingTrips = document.querySelector(".past-trips");
-  upComingTrips.innerHTML = "";
+  upComingTrips.innerHTML = " ";
 
   if (typeof travelerPastTrips !== "string") {
     travelerPastTrips.forEach((destination) => {
@@ -291,7 +289,7 @@ function disPlayTripAmount() {
 
       const total =
         (nightStay * tripDuration + flight * numberOfTravelersForTrip) * 1.1;
-      totalAmount.innerHTML = `Total: $${total}`;
+      totalAmount.innerHTML = `Total: $${parseInt(total)}`;
     });
   }
 }
