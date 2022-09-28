@@ -44,55 +44,23 @@ let traveler;
 //let currentTraveler = parseInt(localStorage.getItem("username"));
 let travelerRequestedDestination;
 
-//EventListener
+availableDestinations.addEventListener("click", getLocations);
 
-window.location.replace("index.html")
+submitButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  const userInput = document.getElementById("checkIn");
+  travelerDate = userInput.value;
+  travelerRequest();
+  formSection.classList.add("hidden");
+});
 
-if (loginButton !== null) {
-  loginButton.addEventListener("click", checkTravelerLogin);
-}
-
-if (availableDestinations !== null)
-  availableDestinations.addEventListener("click", getLocations);
-
-if (submitButton !== null) {
-  submitButton.addEventListener("click", (event) => {
-    event.preventDefault()
-    const userInput = document.getElementById("checkIn");
-    travelerDate = userInput.value;
-    travelerRequest();
-    formSection.classList.add("hidden");
-  });
-}
-
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("load", () => {
   fetchPromise();
 });
 
-if (cancelButton !== null) {
-  cancelButton.addEventListener("click", () => {
-    formSection.classList.add("hidden");
-  });
-}
-
-// if (logout !== null) {
-//   logout.addEventListener("click", () => {
-//     window.location.replace("index.html");
-//   });
-// }
-
-//function()
-
-// function checkTravelerLogin() {
-//   const travelersLogin = traveler.getUserLogin();
-//   localStorage.setItem("username", traveler.getCurrentTraveler(username.value));
-//   if (travelersLogin[username.value] && password.value === "travel") {
-//     window.location.replace("dashboard.html");
-//   } else {
-//     document.querySelector(".validation").innerHTML =
-//       "Your username or password is incorrect please try again";
-//   }
-// }
+cancelButton.addEventListener("click", () => {
+  formSection.classList.add("hidden");
+});
 
 //fetch requests
 export function fetchPromise() {
@@ -100,11 +68,13 @@ export function fetchPromise() {
     getRequest("travelers"),
     getRequest("trips"),
     getRequest("destinations"),
-  ]).then((data) => {
-    assign(data);
-    displayTrips();
-    disPlayTripAmount();
-  }).catch(error => error)
+  ])
+    .then((data) => {
+      assign(data);
+      displayTrips();
+      disPlayTripAmount();
+    })
+    .catch((error) => error);
 
   return requests;
 }
@@ -114,7 +84,9 @@ function travelerRequest() {
   let type = "trips";
   let request = {
     id: Date.now(),
-    userID: traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)].id,
+    userID:
+      traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)]
+        .id,
     destinationID: travelerRequestedDestination,
     travelers: parseInt(numOfTravelers.value),
     date: dayjs(travelerDate.toString()).format("YYYY/MM/DD").toString(),
@@ -155,7 +127,8 @@ function assign(data) {
 function displayTravelerWelcomeMessage() {
   welcomeTraveler.innerHTML = `
     <header> <h1 class="welcome"> Hello ${traveler.getFirstName(
-      traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)].id
+      traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)]
+        .id
     )}! </h1> </header>
     <p> Where will you go next? </p>`;
 }
@@ -163,13 +136,18 @@ function displayTravelerWelcomeMessage() {
 //displaying user full name.
 function displayFullName() {
   const fullName = document.querySelector(".full-name");
-  fullName.innerHTML = `${traveler.getFullName(traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)].id)}`;
+  fullName.innerHTML = `${traveler.getFullName(
+    traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)].id
+  )}`;
 }
 
 //displaying trips that are past the current date
 function getUpcomingTrips() {
   const travelerFutureTrips = destination.getUpcomingDTrips(
-    travelerTrips.getUserTrip(traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)].id)
+    travelerTrips.getUserTrip(
+      traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)]
+        .id
+    )
   );
 
   const upComingTrips = document.querySelector(".upcoming-trips");
@@ -194,7 +172,10 @@ function getUpcomingTrips() {
 //displaying trips that are before the current date
 function getPastTrips() {
   const travelerPastTrips = destination.getTravelerPastTrips(
-    travelerTrips.getUserTrip(traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)].id)
+    travelerTrips.getUserTrip(
+      traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)]
+        .id
+    )
   );
   const upComingTrips = document.querySelector(".past-trips");
   upComingTrips.innerHTML = " ";
@@ -232,12 +213,15 @@ function getAllDestinations(destinations) {
                 </figure>`;
     });
   }
-  showYearlySpending(destinations)
+  showYearlySpending(destinations);
 }
 
 function getCurrentTrips() {
   const travelerCurrentTrip = destination.getCurrentDestinations(
-    travelerTrips.getUserTrip(traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)].id)
+    travelerTrips.getUserTrip(
+      traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)]
+        .id
+    )
   );
   const currentTrips = document.querySelector(".current-trips");
   currentTrips.innerHTML = "";
@@ -264,7 +248,7 @@ function getCurrentTrips() {
 //event delegation for selecting a destination.
 function getLocations(event) {
   const selectedDestination = event.target.closest(".scroll");
-  
+
   if (!selectedDestination) {
     return;
   }
@@ -279,7 +263,6 @@ function getLocations(event) {
   travelerRequestedDestination = destination.getSearchedLocation(
     selectedDestination.innerText.split("\n")[0]
   );
-  
 }
 
 //displaying how much a requested trip will cost.
@@ -313,9 +296,17 @@ function getTripDuration() {
   return travelerTrips.getTripDuration(checkOutDat, checkInDate);
 }
 
-function showYearlySpending(destinations){
-    const currentDate = dayjs().year().toString();
-    let randomUser = traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)].id
-    const userTrips = travelerTrips.getUserTrip(randomUser)
-    document.querySelector('.yearly-spending').innerHTML = `Amount Spent this Year: $${travelerTrips.getYearlySpending(userTrips,currentDate,destinations)}`
+function showYearlySpending(destinations) {
+  const currentDate = dayjs().year().toString();
+  let randomUser =
+    traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)]
+      .id;
+  const userTrips = travelerTrips.getUserTrip(randomUser);
+  document.querySelector(
+    ".yearly-spending"
+  ).innerHTML = `Amount Spent this Year: $${travelerTrips.getYearlySpending(
+    userTrips,
+    currentDate,
+    destinations
+  )}`;
 }
