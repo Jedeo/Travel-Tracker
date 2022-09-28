@@ -34,8 +34,7 @@ const submitButton = document.querySelector(".form-submit-button");
 const cancelButton = document.querySelector(".cancel-icon");
 const totalAmount = document.querySelector(".total-for-trip");
 const numOfTravelers = document.getElementById("numOfTravelers");
-const logout = document.querySelector(".logout-logo")
-
+const logout = document.querySelector(".logout-logo");
 
 let nightStay;
 let flight;
@@ -59,7 +58,7 @@ if (availableDestinations !== null)
 if (submitButton !== null) {
   submitButton.addEventListener("click", (event) => {
     const userInput = document.getElementById("checkIn");
-    const endDate = document.querySelector(".checkOut");
+    //  const endDate = document.querySelector(".checkOut");
     travelerDate = userInput.value;
     travelerRequest();
   });
@@ -75,19 +74,20 @@ if (cancelButton !== null) {
   });
 }
 
-if(logout !== null){
-    logout.addEventListener('click',()=> {
-        window.location.replace("index.html")
-    } )
+if (logout !== null) {
+  logout.addEventListener("click", () => {
+    window.location.replace("index.html");
+  });
 }
-
 
 function checkTravelerLogin() {
   const travelersLogin = traveler.getUserLogin();
   localStorage.setItem("username", traveler.getCurrentTraveler(username.value));
-
   if (travelersLogin[username.value] && password.value === "travel") {
     window.location.replace("dashboard.html");
+  } else {
+    document.querySelector(".validation").innerHTML =
+      "Your username or password is incorrect please try again";
   }
 }
 
@@ -288,10 +288,10 @@ function disPlayTripAmount() {
     numOfTravelers.addEventListener("keyup", () => {
       let numberOfTravelersForTrip = numOfTravelers.value;
 
-
       let tripDuration = getTripDuration();
-      
-        const total = ((nightStay * tripDuration) + (flight * numberOfTravelersForTrip)) * 1.1
+
+      const total =
+        (nightStay * tripDuration + flight * numberOfTravelersForTrip) * 1.1;
       totalAmount.innerHTML = `Total: $${total}`;
     });
   }

@@ -30,3 +30,8 @@
     height: 2rem;
     left: 12.5rem;
 }
+
+.validation{
+    color: red;
+    font-size: small;
+}
