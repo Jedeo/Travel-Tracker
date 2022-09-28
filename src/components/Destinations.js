@@ -79,7 +79,7 @@ class Destinations {
         }
       });
     });
-
+    
     return (upComingTrips.length === 0) ? "No current trips at this time" : upComingTrips;
   }
 }
