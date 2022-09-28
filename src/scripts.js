@@ -220,7 +220,7 @@ function getAllDestinations(destinations) {
     availableDestinations.innerHTML = "";
     destinations.forEach((destination) => {
       availableDestinations.innerHTML += `
-                 <figure class="scroll">
+                 <figure tabindex="0" class="scroll">
                     <img class="destination-img" src="${destination.image}" alt="${destination.alt}">
                     <div class="info">
                     <figcaption class="destination-name"> ${destination.destination} </figcaption>
@@ -230,6 +230,7 @@ function getAllDestinations(destinations) {
                 </figure>`;
     });
   }
+  showYearlySpending(destinations)
 }
 
 function getCurrentTrips() {
@@ -305,4 +306,11 @@ function getTripDuration() {
     .toString();
 
   return travelerTrips.getTripDuration(checkOutDat, checkInDate);
+}
+
+function showYearlySpending(destinations){
+    const currentDate = dayjs().year().toString();
+    let randomUser = traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)].id
+    const userTrips = travelerTrips.getUserTrip(randomUser)
+    document.querySelector('.yearly-spending').innerHTML = `Amount Spent this Year: $${travelerTrips.getYearlySpending(userTrips,currentDate,destinations)}`
 }
