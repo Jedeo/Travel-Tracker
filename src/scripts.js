@@ -101,7 +101,7 @@ export function fetchPromise() {
     assign(data);
     displayTrips();
     disPlayTripAmount();
-  });
+  }).catch(error => error)
 
   return requests;
 }
