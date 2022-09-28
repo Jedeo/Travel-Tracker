@@ -203,7 +203,7 @@ function getAllDestinations(destinations) {
     availableDestinations.innerHTML = "";
     destinations.forEach((destination) => {
       availableDestinations.innerHTML += `
-                 <figure class="scroll">
+                 <figure tabindex="0" class="scroll">
                     <img class="destination-img" src="${destination.image}" alt="${destination.alt}">
                     <div class="info">
                     <figcaption class="destination-name"> ${destination.destination} </figcaption>
