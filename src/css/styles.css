@@ -107,11 +107,13 @@ h2{
   margin: 0;
   margin-right: 0;
   margin-top: 0;
+  padding-bottom: 12px;
   scroll-behavior: smooth;
     
 }
 .scroll img:hover {
-  color: aqua;
+  border: 2px solid;
+  border-color: aqua;
 }
 
 /* right section upcoming events*/

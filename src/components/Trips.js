@@ -1,3 +1,5 @@
+const dayjs = require("dayjs");
+
 class Trips {
   constructor(trips) {
     this.trips = trips;
@@ -42,11 +44,11 @@ class Trips {
     let filteredTrips = trips.filter((trip) => trip.date.includes(year));
 
     let yearSpending = filteredTrips.reduce((totalSpending, trip) => {
-      destinations.filter((destination) => {
+      destinationsTestData.filter((destination) => {
         if (destination.id === trip.destinationID) {
           totalSpending +=
-            (destination.estimatedLodgingCostPerDay * trip.duration +
-              destination.estimatedFlightCostPerPerson * trip.travelers) *
+            ((destination.estimatedLodgingCostPerDay * trip.duration) +
+             (destination.estimatedFlightCostPerPerson * trip.travelers)) *
             1.1;
         }
       });
@@ -54,7 +56,9 @@ class Trips {
       return totalSpending;
     }, 0);
 
-    return Math.round(yearSpending);
+    const result = Math.round(yearSpending);
+
+    return result;
   }
 }
 

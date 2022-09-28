@@ -53,7 +53,7 @@ describe('Destinations', function() {
   })
 
   it('should return traveler current destination', () => {
-    let result = destination.getUpcomingDTrips(trip.getUserTrip(18))
-    expect(result[0]).to.equal(destinationsTestData[24])
+    let result = destination.getCurrentDestinations(trip.getUserTrip(18))
+    expect(result).to.equal('No current trips at this time')
   })
 });
