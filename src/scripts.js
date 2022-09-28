@@ -58,7 +58,6 @@ if (availableDestinations !== null)
 if (submitButton !== null) {
   submitButton.addEventListener("click", (event) => {
     const userInput = document.getElementById("checkIn");
-    //  const endDate = document.querySelector(".checkOut");
     travelerDate = userInput.value;
     travelerRequest();
   });
