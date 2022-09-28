@@ -49,7 +49,7 @@ Clicking a destination on the dashboard will allow the user to request a new tri
 
 
 ## Technologies
-This project used JavaScript, HTML, and CSS primarily. Test driven development using Mocha and Chai was also used. Additional technologies learned specifically for this project included Webpack, Chart.js, testing accessibility using LightHouse, and making network requests to fetch information from an API. 
+This project used JavaScript, HTML, and CSS primarily. Test driven development using Mocha and Chai was also used. Additional technologies learned specifically for this project included Webpack, testing accessibility using LightHouse, and making network requests to fetch information from an API. 
 
 ## Contributors
 This project was built Front End Engineering student at Turing School of Software and Design: 
