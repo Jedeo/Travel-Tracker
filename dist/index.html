@@ -11,10 +11,12 @@
   <section>   
     <form class="login-form">
         <label for="userName"> Enter your Username </label>
-        <input type="text" id="userName" autocomplete="username">
-        <label for="passWord"> Enter PassWord</label>
-        <input type="password" id="passWord" autocomplete="current-password">
+        <input type="text" id="userName" autocomplete="off" required="username">
+        <label for="passWord"> Enter Password</label>
+        <input type="password" id="passWord" autocomplete="current-password" required="password">
+        <span class="validation"></span>
       </form>
+    
       <button class="login-button"> <a href="dashboard.html"></a> login </button>
   </section>
  </main>
