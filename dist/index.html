@@ -7,17 +7,22 @@
   <title>Travel Tracker</title>
 </head>
 <body class="login-page">
- <main class="login-main">
-  <section>   
+  <header class="title"><h1>Travel Tracker</h1></header>  
+ <main class="login-main">  
+  <section class="login-section">
+    <div class="traveler-login">
+      <h2>Traveler Login</h2>
+      <p>Hey, Enter your details to sign in to your account</p>
+    </div>
     <form class="login-form">
-        <label for="userName"> Enter your Username </label>
-        <input type="text" id="userName" autocomplete="off" required="username">
-        <label for="passWord"> Enter Password</label>
-        <input type="password" id="passWord" autocomplete="current-password" required="password">
+        
+        <input type="text" id="userName" placeholder="Enter username" autocomplete="off" required="username">
+        
+        <input type="password" id="passWord" placeholder="Enter password"autocomplete="current-password" required="password">
         <span class="validation"></span>
       </form>
     
-      <button class="login-button"> <a href="dashboard.html"></a> login </button>
+      <button class="login-button"> Sign in </button>
   </section>
  </main>
   
