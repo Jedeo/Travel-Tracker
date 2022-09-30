@@ -12,8 +12,6 @@ describe("Trips", function () {
   })
   it("should return all trips past, present, and future by user ID", function () {
     
-
-    // console.log(tripsTestData);
     expect(trip.getUserTrip(1)).to.eql([
       {
         id: 117,
@@ -29,8 +27,8 @@ describe("Trips", function () {
   });
 
   it('should show an estimated cost (with a 10% travel agent fee) for the trip', function() {
-    const result = trip.getUserTrip(1)
-    expect(trip.getEstimatedCost(result,1,"2021/01/09",destinationsTestData)).to.equal(4125)
+    const result = trip.getUserTrip(35)
+    expect(trip.getEstimatedCost(result,35,'2022/10/04',destinationsTestData)).to.equal(4565)
   });
 
   it('should show total amount spent this year', function() {

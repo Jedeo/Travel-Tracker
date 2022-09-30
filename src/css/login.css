@@ -1,3 +1,6 @@
+body{
+    background-color: #F6F2EC;
+}
 .login-main,
 .login-form{
     display: flex;
@@ -5,9 +8,17 @@
 }
 
 .login-main{
-    margin-top: 40vh;
+    margin-top: 20vh;
 }
 
+.login-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    padding: 30px;
+    background-color:#FFFFFF;
+}
 
 .login-form{
     flex-direction: column;
@@ -17,21 +28,45 @@
 }
 
 #passWord,
-#userName{
-    margin-top: 1vh;
-    width: 20rem;
+#userName,
+.login-button{
+    border: none;
+    appearance: none;
+    padding: 10px;
+    background-color:blanchedalmond;
+    border-radius: 6px;
+    margin-top: .5vh;
+    margin-bottom: 1rem;
+    border-color:rgb(229, 224, 224);
+    width: 250px;
     height: 2rem;
 }
 
 .login-button{
-    position: relative;
-    margin-top: 1rem;
-    width: 8rem;
-    height: 2rem;
-    left: 12.5rem;
+    font-size: medium;
+    background-color: #fed5a3f0;
+    border-radius: 6px;
+    width: 270px;
+    height: 3rem;
 }
 
-.validation{
-    color: red;
-    font-size: small;
+.traveler-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 250px;
+    margin: 0;
+}
+
+.traveler-login p {
+    text-align: center;
+}
+
+.traveler-login h2{
+    text-align: center;
+}
+
+.title{
+    font-size:large;
+    position: relative;
 }

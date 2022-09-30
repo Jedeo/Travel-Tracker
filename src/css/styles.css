@@ -21,47 +21,63 @@ main{
 .filter-button,
 .search-place input 
 {
-  border-radius: 10px;
+  border: none;
+  appearance: none;
+  outline: none; 
+  border-radius: 8px;
  
 }
 
 .search-button,
 .filter-button{
-  background-color: aqua
+  background-color: #FDC887;
 }
+
 /* Middle section */
 
 .middle-section{
-  width: 70vw;
+  width: 65vw;
 }
 
 .searchbar-section{
   display: flex;
+  justify-content:space-between;
 }
-.search-place input{
-  
-  width: 30vw;
-  height: 2rem;
-  
+.bar{
+  display: flex;
 }
 
-.search-place{
-  margin-bottom: 5vh;
+.title2{
+  font-size: xx-large;
+  position: relative;
+  bottom: 35px;
+}
+
+/* search bar styling */
+.search-place input{
+  padding: 12px;
+  border-radius: 6px;
+  width: 20vw;
+  height: 2rem;
+  
+  
 }
 
 .filter-logo{
-  
-  width: 1.5rem;
+  padding: 12px;
+  width: 1rem;
   height: 1.5rem;
 }
 
 .filter-button {
+  height: 3.5rem;
   margin-left: 2px;
   margin-right: 2px;
 }
 
 .search-button{
   width: 5rem;
+  height: 3.5rem;
 }
 .middle-section p {
   margin: 0;
@@ -83,7 +99,13 @@ main{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  width: 70vw;
+  width: 65vw;
+}
+
+.destination{
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: 73vh;
 }
 
 .destination figure .destination-img{
@@ -94,7 +116,7 @@ main{
 .destination-img{
   width: 15rem;
   height: 10rem;
-  border-radius: 12px;
+  border-radius: 6px;
 }
 /* middle and right sections */
 h2{
@@ -112,20 +134,19 @@ h2{
     
 }
 .scroll img:hover {
-  border: 2px solid;
+  border: .01px solid;
   border-color: aqua;
 }
 
 /* right section upcoming events*/
 .right-section{
-  /* position: fixed; */
-  /* right: 0; */
-  width: 30vw;
+  width: 35vw;
+  margin: 2rem;
 }
 .current-trips,
 .past-trips,
 .upcoming-trips{
-  width: 28vw;
+  width: 30vw;
   height: auto;
   overflow-x: scroll;
   white-space: nowrap;
@@ -147,7 +168,7 @@ h2{
 /* form-section */
 
 .form-section {
-  border-radius: 10px;
+  border-radius: 6px;
   position:absolute;
   left: 30vw;
   top: 28vh;
@@ -168,7 +189,7 @@ h2{
 
 
 #location,#numOfTravelers {
-  border-radius: 12px;
+  border-radius: 6px;
   width: 14rem;
   height: 2rem;
   margin-bottom: 1rem;
@@ -184,7 +205,7 @@ h2{
 
 #checkIn,
 #checkOut{
-  border-radius: 12px;
+  border-radius: 6px;
   width: 14rem;
   height: 2rem;
 }
@@ -207,7 +228,7 @@ h2{
   position: relative;
   font-size: medium;
   height: 2rem;
-  border-radius: 12px;
+  border-radius: 8px;
   background-color: aqua;
   bottom: 4rem;
 }

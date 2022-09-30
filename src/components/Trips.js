@@ -21,10 +21,10 @@ class Trips {
     });
 
     const estimatedCost =
-      (filteredDestinations.estimatedLodgingCostPerDay * bookedTrip.duration +
-        filteredDestinations.estimatedFlightCostPerPerson *
-          bookedTrip.travelers) *
-      1.1;
+      ((filteredDestinations.estimatedLodgingCostPerDay * bookedTrip.duration) +
+        (filteredDestinations.estimatedFlightCostPerPerson *
+          bookedTrip.travelers)) * 1.1;
+
     return estimatedCost;
   }
 
@@ -46,10 +46,7 @@ class Trips {
     let yearSpending = filteredTrips.reduce((totalSpending, trip) => {
       destinationsTestData.filter((destination) => {
         if (destination.id === trip.destinationID) {
-          totalSpending +=
-            ((destination.estimatedLodgingCostPerDay * trip.duration) +
-             (destination.estimatedFlightCostPerPerson * trip.travelers)) *
-            1.1;
+          totalSpending += (((destination.estimatedLodgingCostPerDay * trip.duration) + (destination.estimatedFlightCostPerPerson * trip.travelers)) * 1.1);
         }
       });
 
