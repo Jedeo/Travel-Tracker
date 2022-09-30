@@ -30,28 +30,34 @@
       </section>
     </section>
     <main>
+      
       <img tabindex="0" role="button"  aria-label="logout" class="logout-logo" src="" alt="">
       <section class="middle-section">
+        
+        <section class="search-place">
+          
+          <div class="searchbar-section">
+            <header class="title2"><h1>Travel Tracker</h1></header>  
+            <div class="bar">
+            <input
+              type="text"
+              id="searchbar"
+              name="search"
+              placeholder="Search for your favorite destination"
+            />
+            <button aria-label="filter" class="filter-button">
+              <img tabindex="0" role="button"  aria-label="filter" class="filter-logo" src="" alt="" />
+            </button>
+            <button aria-label="search" class="search-button">
+              Search
+            </button>
+            </div>
+          </div>
+        </section>
         <section class="header-section">
           <!-- <div><img class="web-logo"src="" alt=""></div> -->
           <div>
             <header><h1 class="welcome-traveler"></h1></header>
-            <section class="search-place">
-              <div class="searchbar-section">
-                <input
-                  type="text"
-                  id="searchbar"
-                  name="search"
-                  placeholder="Search for your favorite destination"
-                />
-                <button aria-label="filter" class="filter-button">
-                  <img tabindex="0" role="button"  aria-label="filter" class="filter-logo" src="" alt="" />
-                </button>
-                <button aria-label="search" class="search-button">
-                  Search
-                </button>
-              </div>
-            </section>
           </div>
         </section>
         <section class="destination"></section>
@@ -71,8 +77,8 @@
         </section>
 
         <section>
-          <h2>Places You Visted</h2>
-          <section class="past-trips past-message"></section>
+          <h2>Places You Visited</h2>
+          <section class="past-trips"></section>
         </section>
       </section>
     </main>

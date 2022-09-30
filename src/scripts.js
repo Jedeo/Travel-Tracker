@@ -152,9 +152,9 @@ function assign(data) {
 //displaying a welcoming message with user first name
 function displayTravelerWelcomeMessage() {
   welcomeTraveler.innerHTML = `
-    <header> <h1 class="welcome"> Hello ${traveler.getFirstName(
+    <header> <h2 class="welcome"> Hello ${traveler.getFirstName(
       currentTraveler
-    )}! </h1> </header>
+    )}! </h2> </header>
     <p> Where will you go next? </p>`;
 }
 
