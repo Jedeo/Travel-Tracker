@@ -14,7 +14,7 @@ import "./images/search.png";
 import "./images/logout.png";
 import "./images/flying.png";
 import "./images/cancel.png";
-import "./images/travelTracker.png"
+import "./images/travel-tracker.png"
 
 //CSS (SCSS) file import
 import "./css/styles.css";
@@ -67,7 +67,7 @@ if (submitButton !== null) {
     formSection.classList.add("hidden");
   });
 }
-pageLogo.src = './images/travelTracker.png'
+pageLogo.src = './images/travel-tracker.png'
 window.addEventListener("DOMContentLoaded", () => {
   fetchPromise();
  
