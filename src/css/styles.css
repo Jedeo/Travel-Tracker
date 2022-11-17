@@ -18,7 +18,7 @@ main{
   width: 8rem;
 }
 .search-button,
-.filter-button,
+
 .search-place input 
 {
   border: none;
@@ -28,8 +28,8 @@ main{
  
 }
 
-.search-button,
-.filter-button{
+.search-button{
+  font-size: medium;
   background-color: #FDC887;
 }
 
@@ -69,14 +69,9 @@ main{
   height: 1.5rem;
 }
 
-.filter-button {
-  height: 3.5rem;
-  margin-left: 2px;
-  margin-right: 2px;
-}
-
 .search-button{
-  width: 5rem;
+  margin-left: .1rem;
+  width: 6rem;
   height: 3.5rem;
 }
 .middle-section p {
@@ -98,13 +93,14 @@ main{
 .destination{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 65vw;
 }
 
 .destination{
   overflow: scroll;
-  overflow-x: hidden;
+  overflow-x: auto;
+  overflow-y:auto;
   max-height: 73vh;
 }
 
@@ -148,7 +144,7 @@ h2{
 .upcoming-trips{
   width: 30vw;
   height: auto;
-  overflow-x: scroll;
+  overflow-x:auto;
   white-space: nowrap;
 }
 .figure-info {

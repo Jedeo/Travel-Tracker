@@ -15,7 +15,7 @@ class Destinations {
 
     return listOfLocations;
   }
-  //return searched destination
+  //return searched destination id
   getSearchedLocation(searchedWord) {
     const location = this.destinations.find(
       (destination) => destination.destination === searchedWord
@@ -28,6 +28,21 @@ class Destinations {
     //console.log('location', location);
 
     return location.id;
+  }
+
+    //return searched destination
+  getSearchedDestination(searchedWord) {
+    const location = this.destinations.find(
+      (destination) => destination.destination.toLowerCase().includes(searchedWord.toLowerCase())
+    );
+
+    if (location === undefined) {
+      return "Location not available please select a different location";
+    }
+
+    //console.log('location', location);
+
+    return location;
   }
 
   //getting traveler Destination

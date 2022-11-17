@@ -14,6 +14,7 @@ import "./images/search.png";
 import "./images/logout.png";
 import "./images/flying.png";
 import "./images/cancel.png";
+import "./images/travelTracker.png"
 
 //CSS (SCSS) file import
 import "./css/styles.css";
@@ -35,6 +36,8 @@ const cancelButton = document.querySelector(".cancel-icon");
 const totalAmount = document.querySelector(".total-for-trip");
 const numOfTravelers = document.getElementById("numOfTravelers");
 const logout = document.querySelector(".logout-logo");
+const searchButton = document.querySelector(".search-button");
+const pageLogo = document.querySelector('.title')
 
 let nightStay;
 let flight;
@@ -57,16 +60,17 @@ if (availableDestinations !== null)
 
 if (submitButton !== null) {
   submitButton.addEventListener("click", (event) => {
-    event.preventDefault()
+    event.preventDefault();
     const userInput = document.getElementById("checkIn");
     travelerDate = userInput.value;
     travelerRequest();
     formSection.classList.add("hidden");
   });
 }
-
+pageLogo.src = './images/travelTracker.png'
 window.addEventListener("DOMContentLoaded", () => {
   fetchPromise();
+ 
 });
 
 if (cancelButton !== null) {
@@ -80,6 +84,8 @@ if (logout !== null) {
     window.location.replace("index.html");
   });
 }
+
+searchButton.addEventListener("click", displaySearchedDestination);
 
 function checkTravelerLogin() {
   const travelersLogin = traveler.getUserLogin();
@@ -98,11 +104,13 @@ export function fetchPromise() {
     getRequest("travelers"),
     getRequest("trips"),
     getRequest("destinations"),
-  ]).then((data) => {
-    assign(data);
-    displayTrips();
-    disPlayTripAmount();
-  }).catch(error => error)
+  ])
+    .then((data) => {
+      assign(data);
+      displayTrips();
+      disPlayTripAmount();
+    })
+    .catch((error) => error);
 
   return requests;
 }
@@ -230,7 +238,7 @@ function getAllDestinations(destinations) {
                 </figure>`;
     });
   }
-  showYearlySpending(destinations)
+  showYearlySpending(destinations);
 }
 
 function getCurrentTrips() {
@@ -308,9 +316,41 @@ function getTripDuration() {
   return travelerTrips.getTripDuration(checkOutDat, checkInDate);
 }
 
-function showYearlySpending(destinations){
-    const currentDate = dayjs().year().toString();
-    let randomUser = traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)].id
-    const userTrips = travelerTrips.getUserTrip(randomUser)
-    document.querySelector('.yearly-spending').innerHTML = `Amount Spent this Year: $${travelerTrips.getYearlySpending(userTrips,currentDate,destinations)}`
+function showYearlySpending(destinations) {
+  const currentDate = dayjs().year().toString();
+  let randomUser =
+    traveler.travelers[Math.floor(Math.random() * traveler.travelers.length)]
+      .id;
+  const userTrips = travelerTrips.getUserTrip(randomUser);
+  document.querySelector(
+    ".yearly-spending"
+  ).innerHTML = `Amount Spent this Year: $${travelerTrips.getYearlySpending(
+    userTrips,
+    currentDate,
+    destinations
+  )}`;
+}
+
+function displaySearchedDestination() {
+  const searchedLocation = document.getElementById("searchbar").value;
+  console.log(searchedLocation);
+  const travelerDestination = destination.getSearchedDestination(searchedLocation);
+  console.log(typeof travelerDestination);
+
+  if (typeof travelerDestination !== 'string') {
+    const availableDestinations = document.querySelector(".destination");
+    availableDestinations.innerHTML = "";
+    availableDestinations.innerHTML += ` 
+      <figure tabindex="0" class="scroll">
+      <img class="destination-img" src="${travelerDestination.image}" alt="${travelerDestination.alt}">
+      <div class="info">
+      <figcaption class="destination-name"> ${travelerDestination.destination} </figcaption>
+      <p class="figure-info">  $${travelerDestination.estimatedLodgingCostPerDay} night</p>
+      <p class="figure-info"> $${travelerDestination.estimatedFlightCostPerPerson} flights / PerPerson  </p>
+      </div>
+  </figure>`;
+   
+  } else {
+    
+  }
 }
