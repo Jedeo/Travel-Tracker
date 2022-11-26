@@ -26,7 +26,7 @@ Travel Tracker is an interactive website that tracks a travelers destination. Go
 - Ensure our app follows best practices for accessibility.
 - Utilize proper error handling for our users to ensure they get data and submit POST requests. 
 
-[![Main_Page_Travel_Tracker](https://user-images.githubusercontent.com/16736352/192635904-525f18de-adb9-4f7e-8070-bfdff6a7e028.mov)](https://user-images.githubusercontent.com/16736352/192640942-9e5047d7-ce3b-48ae-8ed3-bac01e37bb9b.mov)
+[![Travel Tracker](https://user-images.githubusercontent.com/16736352/192635904-525f18de-adb9-4f7e-8070-bfdff6a7e028.mov)](https://user-images.githubusercontent.com/16736352/192640942-9e5047d7-ce3b-48ae-8ed3-bac01e37bb9b.mov)
 
 Clicking a destination on the dashboard will allow the user to request a new trip by filling out a pop up form. Depending on the dates they plan to trip a travel agent will review lodging and flights availabilities.  
 
